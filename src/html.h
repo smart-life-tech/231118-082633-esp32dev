@@ -250,7 +250,7 @@ const String lOnButton =
     "        On"
     "    </button>"
     "</a>";
-    
+
 const String script =
 "<script>"
 "    const showAlert = (sensorValue) => {"
@@ -306,15 +306,17 @@ const String script =
 "        var xhr = new XMLHttpRequest();"
 "        xhr.open('GET', 'getSensorValue', true);"
 "        xhr.onreadystatechange = function () {"
-"            if (xhr.readyState === 4 && xhr.status === 200) {"
-"                var sensorValue = xhr.responseText;"
-"                showAlert(sensorValue);"
-"            } else {"
-"                sensorDataElement.innerHTML = xhr.statusText + ' ' + xhr.responseText;"
+"            if (xhr.readyState === 4) {"
+"                if (xhr.status === 200) {"
+"                    var sensorValue = xhr.responseText;"
+"                    showAlert(sensorValue);"
+"                } else {"
+"                    console.error('Failed to fetch sensor value. Status:', xhr.status);"
+"                }"
 "            }"
 "        };"
 "        xhr.onerror = function () {"
-"            console.log('Request Failed');"
+"            console.error('Request Failed');"
 "        };"
 "        xhr.send();"
 "    };"
@@ -324,6 +326,7 @@ const String script =
 "        setInterval(getSensorValue, 1000);"
 "    };"
 "</script>";
+
 
 
 String introductionPage =
