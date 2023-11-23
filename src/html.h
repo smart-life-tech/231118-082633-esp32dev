@@ -288,10 +288,8 @@ const String script =
 ""
 "    const showAlertNotification = (title, message) => {"
 "        if (Notification.permission === 'granted') {"
-"            const notification = new Notification(title, {"
-"                body: message,"
-"                icon: 'https://www.seekpng.com/png/detail/130-1304578_notification-comments-notification-icon-svg.png' // Replace with the path to your notification icon"
-"            });"
+"            const options = { body: message, icon: 'https://www.seekpng.com/png/detail/130-1304578_notification-comments-notification-icon-svg.png' };"
+"            new Notification(title, options);"
 "        } else if (Notification.permission !== 'denied') {"
 "            Notification.requestPermission().then(permission => {"
 "                if (permission === 'granted') {"
@@ -326,6 +324,7 @@ const String script =
 "        setInterval(getSensorValue, 1000);"
 "    };"
 "</script>";
+
 
 
 
